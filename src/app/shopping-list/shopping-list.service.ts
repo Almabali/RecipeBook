@@ -19,4 +19,10 @@ export class ShoppingListService {
     this.ingredients.push(ingredient);
     this.ingredientsChange.emit(this.getIngredients());
   }
+
+  addIngredients(ingredients: Ingredient[]): void {
+    // ... spread operator take the ignredient and makes it a list.
+    this.ingredients.push(...ingredients);
+    this.ingredientsChange.emit(this.getIngredients());
+  }
 }
