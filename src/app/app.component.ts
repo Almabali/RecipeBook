@@ -5,10 +5,4 @@ import { Component } from "@angular/core";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"]
 })
-export class AppComponent {
-  selectedPage = "Recipes";
-
-  onPageChange(selectedPage: string): void {
-    this.selectedPage = selectedPage;
-  }
-}
+export class AppComponent {}
