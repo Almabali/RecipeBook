@@ -1,6 +1,5 @@
 import { Routes, RouterModule } from "@angular/router";
 import { ShoppingListComponent } from "./shopping-list/shopping-list.component";
-import { RecipeListComponent } from "./recipes/recipe-list/recipe-list.component";
 import { NgModule } from "@angular/core";
 import { RecipesComponent } from "./recipes/recipes.component";
 
