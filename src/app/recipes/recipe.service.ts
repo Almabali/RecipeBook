@@ -33,7 +33,7 @@ export class RecipeService {
 
   private recipes: Recipe[];
 
-  getRecipes() {
+  getRecipes(): Recipe[] {
     // Slice to get copy and not references!
     return this.recipes.slice();
   }
@@ -42,21 +42,21 @@ export class RecipeService {
     return this.recipes.slice()[id];
   }
 
-  addIngredientsToShoppingList(ingredients: Ingredient[]) {
+  addIngredientsToShoppingList(ingredients: Ingredient[]): void {
     this.slService.addIngredients(ingredients);
   }
 
-  addRecipe(recipe: Recipe) {
+  addRecipe(recipe: Recipe): void {
     this.recipes.push(recipe);
     this.recipeListChanged.next(this.recipes.slice());
   }
 
-  updateRecipe(index: number, newRecipe: Recipe) {
+  updateRecipe(index: number, newRecipe: Recipe): void {
     this.recipes[index] = newRecipe;
     this.recipeListChanged.next(this.recipes.slice());
   }
 
-  removeRecipe(id: number) {
+  removeRecipe(id: number): void {
     this.recipes.splice(id, 1);
     this.recipeListChanged.next(this.recipes.slice());
   }

@@ -19,7 +19,7 @@ export class RecipeEditComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.id = +params["id"];
       this.editMode = params["id"] != null;
@@ -27,7 +27,7 @@ export class RecipeEditComponent implements OnInit {
     });
   }
 
-  private initForm() {
+  private initForm(): void {
     let recipeName = "";
     let recipeImagePath = "";
     let recipeDescription = "";
@@ -61,7 +61,7 @@ export class RecipeEditComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     // const newRecipe = new Recipe(
     //   this.recipeForm.value['name'],
     //   this.recipeForm.value['description'],
@@ -76,7 +76,7 @@ export class RecipeEditComponent implements OnInit {
     this.router.navigate(["../"], { relativeTo: this.route });
   }
 
-  onAddIngredient() {
+  onAddIngredient(): void {
     (<FormArray>this.recipeForm.get("ingredients")).push(
       new FormGroup({
         name: new FormControl(null, Validators.required),
@@ -92,13 +92,13 @@ export class RecipeEditComponent implements OnInit {
     (<FormArray>this.recipeForm.get("ingredients")).removeAt(index);
   }
 
-  onDeleteRecipe() {
+  onDeleteRecipe(): void {
     this.recipeService.removeRecipe(this.id);
     this.recipeForm.reset();
     this.router.navigate(["recipes"]);
   }
 
-  onCancel() {
+  onCancel(): void {
     this.recipeForm.reset();
     this.router.navigate(["../"], { relativeTo: this.route });
   }

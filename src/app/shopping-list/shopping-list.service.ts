@@ -14,7 +14,7 @@ export class ShoppingListService {
     return this.ingredients.slice();
   }
 
-  getIngredient(index: number) {
+  getIngredient(index: number): Ingredient {
     return this.ingredients[index];
   }
 
@@ -29,12 +29,12 @@ export class ShoppingListService {
     this.ingredientsChange.next(this.getIngredients());
   }
 
-  updateIngredient(index: number, newIngredient: Ingredient) {
+  updateIngredient(index: number, newIngredient: Ingredient): void {
     this.ingredients[index] = newIngredient;
     this.ingredientsChange.next(this.ingredients.slice());
   }
 
-  deleteIngredient(index: number) {
+  deleteIngredient(index: number): void {
     this.ingredients.splice(index, 1);
     this.ingredientsChange.next(this.ingredients.slice());
   }
