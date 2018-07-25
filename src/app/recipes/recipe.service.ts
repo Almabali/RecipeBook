@@ -8,28 +8,30 @@ import { Subject } from "rxjs/Subject";
 export class RecipeService {
   recipeListChanged = new Subject<Recipe[]>();
 
-  constructor(private slService: ShoppingListService) {}
+  constructor(private slService: ShoppingListService) {
+    this.recipes = [
+      new Recipe(
+        "testRecipe",
+        "Yummy",
+        "http://cdn-image.myrecipes.com/sites/default/files/styles/" +
+          "4_3_horizontal_-_900x675/public/wild-mushroom-farfalle-ck.jpg?itok=urP4jrLS",
+        [
+          new Ingredient("Meat", 1),
+          new Ingredient("Bread", 2),
+          new Ingredient("Tomato", 5)
+        ]
+      ),
+      new Recipe(
+        "Recipe 2",
+        "Tasty",
+        "http://cdn-image.myrecipes.com/sites/default/files/styles/" +
+          "4_3_horizontal_-_900x675/public/wild-mushroom-farfalle-ck.jpg?itok=urP4jrLS",
+        [new Ingredient("Strawberry", 20), new Ingredient("Flakes", 1000)]
+      )
+    ];
+  }
 
-  private recipes: Recipe[] = [
-    new Recipe(
-      "testRecipe",
-      "Yummy",
-      "http://cdn-image.myrecipes.com/sites/default/files/styles/" +
-        "4_3_horizontal_-_900x675/public/wild-mushroom-farfalle-ck.jpg?itok=urP4jrLS",
-      [
-        new Ingredient("Meat", 1),
-        new Ingredient("Bread", 2),
-        new Ingredient("Tomato", 5)
-      ]
-    ),
-    new Recipe(
-      "Recipe 2",
-      "Tasty",
-      "http://cdn-image.myrecipes.com/sites/default/files/styles/" +
-        "4_3_horizontal_-_900x675/public/wild-mushroom-farfalle-ck.jpg?itok=urP4jrLS",
-      [new Ingredient("Strawberry", 20), new Ingredient("Flakes", 1000)]
-    )
-  ];
+  private recipes: Recipe[];
 
   getRecipes() {
     // Slice to get copy and not references!
@@ -51,6 +53,11 @@ export class RecipeService {
 
   updateRecipe(index: number, newRecipe: Recipe) {
     this.recipes[index] = newRecipe;
+    this.recipeListChanged.next(this.recipes.slice());
+  }
+
+  removeRecipe(id: number) {
+    this.recipes.splice(id, 1);
     this.recipeListChanged.next(this.recipes.slice());
   }
 }
