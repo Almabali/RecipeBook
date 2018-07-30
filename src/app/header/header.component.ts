@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { RecipeStoreService } from "../recipe-store.service";
+import { RecipeStoreService } from "../shared/recipe-store.service";
 import { RecipeService } from "../recipes/recipe.service";
 import { Response } from "@angular/http";
 import { Recipe } from "../recipes/recipe.model";
